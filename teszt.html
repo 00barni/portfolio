@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+/* Alapstílusok az egész oldalra */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* NAVBAR háttérrel és szaggatott dizájnnal */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sárga szaggatott háttér */
+.jagged-background {
+    background-color: yellow;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    clip-path: polygon(0% 100%, 10% 80%, 20% 100%, 30% 80%, 40% 100%, 50% 80%, 60% 100%, 70% 80%, 80% 100%, 90% 80%, 100% 100%, 100% 0%, 0% 0%);
+    border: 3px solid black;
+}
+
+/* NAVBAR gombok */
+.nav-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Tartalom */
+.content {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Vonalkód placeholder */
+.barcode-placeholder {
+    width: 500px;
+    height: 50px;
+    background: repeating-linear-gradient(
+        90deg,
+        black 0px,
+        black 5px,
+        transparent 5px,
+        transparent 10px
+    );
+}
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="jagged-background">
+            <button class="nav-button">Paintings</button>
+            <button class="nav-button">Photographs</button>
+            <button class="nav-button">Sketches</button>
+            <button class="nav-button">Images</button>
+            <button class="nav-button">Other artworks</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="barcode-placeholder"></div>
+    </div>
+
+</body>
+</html>

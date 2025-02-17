@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Danfo&family=Kablammo&family=Libre+Barcode+39&family=Lusitana:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Protest+Strike&family=Reddit+Mono:wght@200..900&family=Rubik+Wet+Paint&family=Tiny5&family=Truculenta:opsz,wght@12..72,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="phone_menu_bg"></div>
+    <div id="navbar_container">
+        <img src="sources/Vector 1.png" alt="navigationbar background" id="navbar_bg">
+        <div id="navbar_buttons">
+            <button class="navbar_buttons" style="font-family: 'Playfair Display';font-weight: 500;" onclick="window.location.href='paintings.html'">Paintings</button>
+            <button class="navbar_buttons" style="font-family: 'Protest Strike';" onclick="window.location.href = 'photography.html';">Photographs</button>
+            <button class="navbar_buttons" style="font-family: 'Reddit Mono';" onclick="window.location.href='sketches.html'">Sketches</button>
+            <button class="navbar_buttons" style="font-family: 'Tiny5';" onclick="window.location.href='images.html'">Images</button>
+            <button class="navbar_buttons" style="font-family: 'Truculenta';" onclick="window.location.href='otherartworks.html'">Other artworks</button>
+        </div>
+    </div>
+    <button id="phone_button">|||</button>
+    <div id="main_content">
+        <div id="switcher">
+            <button id="prev"><img src="sources/balnyil.svg" alt=""></button>
+            <img id="current_img">
+            <button id="next"><img src="sources/jobbnyil.svg" alt=""></button>
+        </div>
+
+        <div id="gallery">
+            <img src="sources/other_artworks/IMG_5395.jpeg" alt="">
+            <img src="sources/other_artworks/IMG_0865.jpeg">
+            <img src="sources/other_artworks/IMG_1184.jpeg">
+            <img src="sources/other_artworks/IMG_1333.jpeg" alt="">
+            <img src="sources/other_artworks/IMG_5400.jpeg" alt="">
+            <img src="sources/other_artworks/IMG_5396.jpeg" alt="">
+            <img src="sources/other_artworks/IMG_5401.jpeg" alt="">
+            <img src="sources/other_artworks/IMG_5408.jpeg" alt="">
+            <img src="sources/other_artworks/IMG_0620.JPG" alt="">
+        </div>
+    </div>
+
+    <div id="bottom_line">
+        <div id="left_to_barcode">
+            <a id="youtube" target="_blank" class="bottom_text" href="https://www.youtube.com/@00barnii/videos">youtube</a>
+            <a id="instagram" target="_blank" class="bottom_text" href="https://www.instagram.com/00barni/">instagram</a>
+        </div>
+        <div id="barcode">
+            <a >make character</a>
+        </div>
+        <div id="right_to_barcode">
+            <a id="nev" class="bottom_text">illenyi barnabas</a>
+        </div>
+    </div>
+
+    <script src="switcher.js"></script>
+    <script src="phone.js"></script>
+</body>
+</html>
