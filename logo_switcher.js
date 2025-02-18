@@ -8,65 +8,69 @@ let logos = [
     "sources/logo7.ico"
 ];
 
-let checkPathName = (window.location.pathname === "/portfolio/" || window.location.pathname === "/portfolio/index.html")
-
 function getRandom() {
-    const randomIndex = Math.floor(Math.random() * logos.length);
-    return logos[randomIndex];
+    return logos[Math.floor(Math.random() * logos.length)];
 }
 
-let intervalId; // A változó, amivel nyomon követhetjük az intervallumot
+let intervalId = null; // Nyomon követjük az intervallumot
+let idleTime = 0;
+const maxIdleTime = 33; // 60 másodperc (1 perc)
 
-function changeLogoEverySecond() {
-    if (checkPathName) {
-        // Ha index.html-en vagyunk, folyamatosan változik a logó
-        if (!intervalId) {
-            intervalId = setInterval(function() {
-                let selectedLogo = getRandom();
-                document.querySelector("link[rel='shortcut icon']").setAttribute("href", selectedLogo);
-            }, 1500); // 1500 ms = 1,5 másodperc
-        }
-    } else {
-        // Ha nem index.html-en vagyunk, várunk egy percet inaktivitásra
-        if (!intervalId) {
-            intervalId = setInterval(function() {
-                if (idleTime >= maxIdleTime) {
-                    let selectedLogo = getRandom();
-                    document.querySelector("link[rel='shortcut icon']").setAttribute("href", selectedLogo);
-                }
-            }, 1500); // 1,5 másodpercenként változtatjuk a logót
-        }
+function isIndexPage() {
+    return window.location.pathname === "/portfolio/" || window.location.pathname.endsWith("index.html");
+}
+
+function startLogoRotation() {
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            let selectedLogo = getRandom();
+            document.querySelector("link[rel='shortcut icon']").setAttribute("href", selectedLogo);
+        }, 1500);
     }
 }
 
-let idleTime = 0;
-const maxIdleTime = 60; // 60 másodperc (1 perc)
+function stopLogoRotation() {
+    if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
+}
+
+function changeLogoLogic() {
+    if (isIndexPage()) {
+        // Ha az index.html oldalon vagyunk, folyamatosan változik a logó
+        startLogoRotation();
+    } else {
+        // Más oldalakon várunk 1 percet, mielőtt a logó elkezd változni
+        stopLogoRotation(); // Biztosítjuk, hogy nincs futó intervallum
+        document.querySelector("link[rel='shortcut icon']").setAttribute("href", "sources/logo.ico"); // Kék logó
+    }
+}
 
 function resetIdleTimer() {
-    idleTime = 0; // Ha van interakció, visszaállítjuk a számlálót
-    if (!checkPathName) {
-        // Ha nem index.html-en vagyunk, visszaállítjuk az alap logót (kék)
+    idleTime = 0;
+    if (!isIndexPage()) {
+        stopLogoRotation();
         document.querySelector("link[rel='shortcut icon']").setAttribute("href", "sources/logo.ico");
     }
 }
 
 function checkIdleTime() {
-    if (checkPathName) {
+    if (!isIndexPage()) {
         idleTime++;
         if (idleTime >= maxIdleTime) {
-            changeLogoEverySecond();
+            startLogoRotation();
         }
     }
 }
 
 // Figyeljük a felhasználói interakciókat
 window.onload = function() {
-    setInterval(checkIdleTime, 1000); // 1 másodpercenként ellenőrizzük a tétlenséget
-    
-    // Ha van interakció, akkor visszaállítjuk a tétlenségi időt
+    setInterval(checkIdleTime, 1000); // 1 másodpercenként ellenőrizzük az inaktivitást
+
     document.addEventListener('mousemove', resetIdleTimer);
     document.addEventListener('keydown', resetIdleTimer);
     document.addEventListener('click', resetIdleTimer);
-};
 
-changeLogoEverySecond();
+    changeLogoLogic(); // Betöltéskor azonnal meghívjuk a megfelelő logikát
+};
