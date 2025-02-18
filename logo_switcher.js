@@ -8,6 +8,8 @@ let logos = [
     "sources/logo7.ico"
 ];
 
+let checkPathName = (window.location.pathname === "/portfolio/" || window.location.pathname === "/portfolio/index.html")
+
 function getRandom() {
     const randomIndex = Math.floor(Math.random() * logos.length);
     return logos[randomIndex];
@@ -16,7 +18,7 @@ function getRandom() {
 let intervalId; // A változó, amivel nyomon követhetjük az intervallumot
 
 function changeLogoEverySecond() {
-    if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+    if (checkPathName) {
         // Ha index.html-en vagyunk, folyamatosan változik a logó
         if (!intervalId) {
             intervalId = setInterval(function() {
@@ -42,14 +44,14 @@ const maxIdleTime = 60; // 60 másodperc (1 perc)
 
 function resetIdleTimer() {
     idleTime = 0; // Ha van interakció, visszaállítjuk a számlálót
-    if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+    if (checkPathName) {
         // Ha nem index.html-en vagyunk, visszaállítjuk az alap logót (kék)
         document.querySelector("link[rel='shortcut icon']").setAttribute("href", "sources/logo.ico");
     }
 }
 
 function checkIdleTime() {
-    if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+    if (checkPathName) {
         idleTime++;
         if (idleTime >= maxIdleTime) {
             changeLogoEverySecond();
