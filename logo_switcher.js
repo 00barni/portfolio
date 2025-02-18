@@ -44,7 +44,7 @@ const maxIdleTime = 60; // 60 másodperc (1 perc)
 
 function resetIdleTimer() {
     idleTime = 0; // Ha van interakció, visszaállítjuk a számlálót
-    if (checkPathName) {
+    if (!checkPathName) {
         // Ha nem index.html-en vagyunk, visszaállítjuk az alap logót (kék)
         document.querySelector("link[rel='shortcut icon']").setAttribute("href", "sources/logo.ico");
     }
