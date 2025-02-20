@@ -17,7 +17,7 @@ let idleTime = 0;
 const maxIdleTime = 33; // 60 másodperc (1 perc)
 
 function isIndexPage() {
-    return window.location.pathname === "/portfolio/" || window.location.pathname.endsWith("index.html");
+    return window.location.pathname === "/" || window.location.pathname === "/portfolio/" || window.location.pathname.endsWith("index.html");
 }
 
 function startLogoRotation() {
